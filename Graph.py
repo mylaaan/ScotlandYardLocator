@@ -12,5 +12,5 @@ class Graph:
 
 
 
-    def add_edge(self, departure, destination, travel_option, x_coordinate = 0, y_coordinate = 0):
+    def add_edge(departure, destination, travel_option, x_coordinate = 0, y_coordinate = 0):
         x = "hallo"
