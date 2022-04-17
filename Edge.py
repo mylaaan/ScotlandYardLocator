@@ -1,5 +1,3 @@
-from Node import Node
-
 class Edge:
 
     def __init__(self, travelmethod, destination):

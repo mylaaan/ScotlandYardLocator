@@ -1,6 +1,3 @@
-from Graph import Graph
-from Edge import Edge
-
 class Node:
 
     def __init__(self, number, x, y):
@@ -14,10 +11,15 @@ class Node:
 
     def destinations_with_travelmethod(self, travelmethod = ["taxi", "bus", "underground", "boat"]):
         destinations = []
-        for i in self.edge_list:
-            if i.travelmethod in travelmethod:
-                destinations.append(i.destination)
+        for edge in self.edge_list:
+            for method in travelmethod:
+                if method in edge.travelmethod:
+
+                    destinations.append(edge.destination)
         return destinations
 
     def add_edge(self, edge):
         self.edge_list.append(edge)
+
+    def __str__(self):
+        return str(self.edge_list)
