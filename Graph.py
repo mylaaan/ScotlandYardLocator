@@ -1,9 +1,14 @@
+from Node import Node
+from Edge import Edge
+
+
 class Graph:
-    taxi = ["taxi"]
-    bus = ["bus"]
-    underground = ["underground"]
-    taxi_bus = ["taxi", "bus"]
-    bus_underground = ["bus", "underground"]
+
+
+    def __init__(self):
+        self.node_list = []
+        self.currently_possible_node_numbers = []
+        self.old_possible_node_numbers = []
 
     def build_graph(self):
         taxi = ["taxi"]
@@ -11,6 +16,7 @@ class Graph:
         underground = ["underground"]
         taxi_bus = ["taxi", "bus"]
         bus_underground = ["bus", "underground"]
+        self.add_edge(0, 0, taxi)
         self.add_edge(1, 9, taxi)
         self.add_edge(1, 8, taxi_bus)
         self.add_edge(1, 46, bus_underground)
@@ -53,7 +59,7 @@ class Graph:
         self.add_edge(13, 46, underground)
         self.add_edge(13, 67, underground)
         self.add_edge(13, 89, underground)
-        self. add_edge(14, 13, bus_underground)
+        self.add_edge(14, 13, bus_underground)
         self.add_edge(14, 15, taxi_bus)
         self.add_edge(14, 25, taxi)
         self.add_edge(15, 5, taxi)
@@ -160,8 +166,30 @@ class Graph:
         self.add_edge(40, 52, taxi)
         self.add_edge(40, 53, taxi)
 
+    def add_edge(self, departure, destination, travel_option, x_coordinate=0, y_coordinate=0):
+        edge = Edge(travel_option, destination)
+        if len(self.node_list) <= departure:
+            node = Node(departure, x_coordinate, y_coordinate)
+            self.node_list.insert(departure, node)
+        self.node_list[departure].add_edge(edge)
 
-    def add_edge(self, departure, destination, travel_option, x_coordinate = 0, y_coordinate = 0):
-        if "taxi" in travel_option:
-            print("hello")
+    def show_options(self, starting_point, travelmethod):
+        if not self.old_possible_node_numbers:
+            self.old_possible_node_numbers.append(starting_point)
+        else:
+            self.old_possible_node_numbers.clear()
+            self.old_possible_node_numbers.extend(self.currently_possible_node_numbers)
+            self.currently_possible_node_numbers.clear()
+        temp_destination_list = []
+        for node_number in self.old_possible_node_numbers:
+            if travelmethod == ["black ticket"]:
+                temp_destination_list.extend(self.node_list[node_number].destinations_with_travelmethod())
+            else:
+                temp_destination_list.extend(self.node_list[node_number].destinations_with_travelmethod(travelmethod))
 
+            for i in temp_destination_list:
+                if not i in self.currently_possible_node_numbers:
+                    self.currently_possible_node_numbers.append(i)
+
+        print("possible locations:")
+        print(self.currently_possible_node_numbers)
