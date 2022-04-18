@@ -180,16 +180,11 @@ class Graph:
             self.old_possible_node_numbers.clear()
             self.old_possible_node_numbers.extend(self.currently_possible_node_numbers)
             self.currently_possible_node_numbers.clear()
-        temp_destination_list = []
         for node_number in self.old_possible_node_numbers:
             if travelmethod == ["black ticket"]:
-                temp_destination_list.extend(self.node_list[node_number].destinations_with_travelmethod())
+                self.currently_possible_node_numbers.extend(self.node_list[node_number].destinations_with_travelmethod())
             else:
-                temp_destination_list.extend(self.node_list[node_number].destinations_with_travelmethod(travelmethod))
+                self.currently_possible_node_numbers.extend(self.node_list[node_number].destinations_with_travelmethod(travelmethod))
 
-            for i in temp_destination_list:
-                if not i in self.currently_possible_node_numbers:
-                    self.currently_possible_node_numbers.append(i)
-
-        print("possible locations:")
-        print(self.currently_possible_node_numbers)
+        self.currently_possible_node_numbers = list(dict.fromkeys(self.currently_possible_node_numbers))
+        return self.currently_possible_node_numbers
