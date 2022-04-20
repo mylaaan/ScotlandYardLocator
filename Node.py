@@ -14,7 +14,6 @@ class Node:
         for edge in self.edge_list:
             for method in travelmethod:
                 if method in edge.travelmethod:
-
                     destinations.append(edge.destination)
         return destinations
 
