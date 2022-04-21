@@ -20,6 +20,7 @@ class UI:
         self.x = []
         self.y = []
 
+
     def submit(self):
         if self.starting_entry.get() == "":
             self.results_box.delete("1.0", END)
@@ -60,6 +61,7 @@ class UI:
         self.axes.patch.set_facecolor('black')
         self.axes.axis("off")
         self.figure_canvas.draw()
+
 
     def create_window(self):
         window = Tk()
@@ -153,25 +155,23 @@ class UI:
     #########################################################################################################################
     #########################################################################################################################
 
+    def text_based(self):
+        scotland_yard_is_fun = True
+        print("Type exit to reset and/or exit")
+        print("#################################")
+        while scotland_yard_is_fun:
+            start_node = input("Starting point: ")
+            if start_node == "exit":
+                break
 
-    # scotland_yard_is_fun = True
-    # while scotland_yard_is_fun:
-    #     locator = Graph()
-    #     locator.build_graph()
-    #     start_node = input("Starting point: ")
-    # #   start_node = 1
-    #     if start_node == "exit":
-    #         break
-    #
-    #     start_node = int(start_node)
-    #     on_the_run_in_the_dark = True
-    #     while on_the_run_in_the_dark:
-    #         travelmethod = input("taxi, bus, underground or black ticket? ")
-    # #       travelmethod = "taxi"
-    #         if travelmethod == "exit":
-    #             on_the_run_in_the_dark = False
-    #             break
-    #         if travelmethod in ["taxi", "bus", "underground", "black ticket"]:
-    #             locator.show_options(start_node, [travelmethod])
-    #         else:
-    #             print("unknown travel option, try again!")
+            start_node = int(start_node)
+            on_the_run_in_the_dark = True
+            while on_the_run_in_the_dark:
+                travelmethod = input("taxi, bus, underground or black ticket? ")
+                if travelmethod == "exit":
+                    on_the_run_in_the_dark = False
+                    break
+                if travelmethod in ["taxi", "bus", "underground", "black ticket"]:
+                    print(self.locator.show_options(start_node, [travelmethod]))
+                else:
+                    print("unknown travel option, try again!")
