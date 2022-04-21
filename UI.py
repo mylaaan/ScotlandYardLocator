@@ -108,10 +108,10 @@ class UI:
 
         #based on ["taxi", "bus", "underground", "black ticket"]
         self.radio_choice = IntVar()
-        radio_taxi = Radiobutton(master=input_frame, text="Taxi", variable=self.radio_choice, value=0, fg="white", bg="black", selectcolor="red")
-        radio_bus = Radiobutton(master=input_frame, text="Bus", variable=self.radio_choice, value=1, fg="white", bg="black", selectcolor="red")
-        radio_underground = Radiobutton(master=input_frame, text="Underground", variable=self.radio_choice, value=2, fg="white", bg="black", selectcolor="red")
-        radio_black = Radiobutton(master=input_frame, text="Black ticket", variable=self.radio_choice, value=3, fg="white", bg="black", selectcolor="red")
+        radio_taxi = Radiobutton(master=input_frame, text="Taxi", variable=self.radio_choice, value=0, fg="white", bg="black", selectcolor="grey")
+        radio_bus = Radiobutton(master=input_frame, text="Bus", variable=self.radio_choice, value=1, fg="white", bg="black", selectcolor="grey")
+        radio_underground = Radiobutton(master=input_frame, text="Underground", variable=self.radio_choice, value=2, fg="white", bg="black", selectcolor="grey")
+        radio_black = Radiobutton(master=input_frame, text="Black ticket", variable=self.radio_choice, value=3, fg="white", bg="black", selectcolor="grey")
         radio_taxi.grid(row=1, column=0, sticky="w")
         radio_bus.grid(row=2, column=0, sticky="w")
         radio_underground.grid(row=3, column=0, sticky="w")
