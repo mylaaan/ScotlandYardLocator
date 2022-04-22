@@ -22,3 +22,6 @@ class Node:
 
     def __str__(self):
         return str(self.edge_list)
+
+    def __lt__(self, other):
+        return self.number < other.number
